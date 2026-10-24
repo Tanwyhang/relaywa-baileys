@@ -25,3 +25,12 @@ if (packageJson.name !== "@workflo/relaywa-baileys") {
 const entrypoint = await readFile(new URL("../lib/index.js", import.meta.url));
 console.log(`Verified ${packageJson.name}@${packageJson.version}`);
 console.log(`Entrypoint SHA-256: ${createHash("sha256").update(entrypoint).digest("hex")}`);
+
+const source = JSON.parse(await readFile(new URL('../runtime/SOURCE.json', import.meta.url), 'utf8'));
+for (const [file, expected] of Object.entries(source.sha256)) {
+  const bytes = await readFile(new URL(`../runtime/${file}`, import.meta.url));
+  if (createHash('sha256').update(bytes).digest('hex') !== expected) {
+    throw new Error(`Extracted source changed without provenance review: ${file}`);
+  }
+}
+console.log('Extracted helper provenance verified');

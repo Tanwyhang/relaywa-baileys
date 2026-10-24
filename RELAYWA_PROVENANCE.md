@@ -32,3 +32,12 @@ Artifact SHA-256:
 This directory contains the compiled runtime package used by RelayWA. It does not include Workflo UI, AI inference, approval queues, customer data, credentials, or deployment configuration.
 
 This is an unofficial WhatsApp Web integration and is not affiliated with or supported by WhatsApp or Meta.
+
+## ReVisit helper extraction — 2026-10-24
+
+Release relaywa.2 adds unchanged helper modules from
+https://github.com/Tanwyhang/eventflo-games/tree/586cb7d/services/whatsapp-containers/cell .
+The exact file checksums, including regression tests, are recorded in runtime/SOURCE.json.
+All 397 lib/ and WAProto/ files were compared byte-for-byte with the original archive;
+none changed. The source gateway's auth persistence, reconnect and receipt wiring is
+shown in the integration example without exporting application callbacks or secrets.

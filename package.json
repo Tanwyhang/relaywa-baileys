@@ -1,7 +1,7 @@
 {
   "name": "@workflo/relaywa-baileys",
   "type": "module",
-  "version": "7.0.0-relaywa.1",
+  "version": "7.0.0-relaywa.2",
   "description": "Workflo's pinned Baileys compatibility build for RelayWA",
   "keywords": [
     "whatsapp",
@@ -22,12 +22,18 @@
     "WAProto/**/*",
     "engine-requirements.js",
     "RELAYWA_PROVENANCE.md",
-    "scripts/verify-package.mjs"
+    "scripts/verify-package.mjs",
+    "runtime/**/*.mjs",
+    "runtime/SOURCE.json",
+    "examples/**/*",
+    "docs/**/*",
+    "runtime/README.md"
   ],
   "scripts": {
     "check": "node ./scripts/verify-package.mjs",
     "preinstall": "node ./engine-requirements.js",
-    "prepack": "npm run check"
+    "prepack": "npm run check && npm test",
+    "test": "node --test runtime/*.test.mjs"
   },
   "publishConfig": {
     "access": "restricted",
@@ -94,6 +100,6 @@
   },
   "packageManager": "yarn@4.9.2",
   "engines": {
-    "node": ">=20.0.0"
+    "node": ">=22.19.0"
   }
 }
