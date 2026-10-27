@@ -7,9 +7,14 @@
     "confirmed-send.test.mjs": "16b4f87a36eeb130cf067db1d976067aa19d67dc5e20045027d6be73c22c4528",
     "outbound-messages.mjs": "66d286a59f824302e0b44518a5fd2beb51a1194ca0cf48058acf2e89fd6eb2a7",
     "outbound-messages.test.mjs": "e7f6fc8a0e750f0856c6b070ac92825587918566daad14bb7d66a0220fff1c63",
-    "whatsapp-identity.mjs": "f40f53c055e083f3a78fb58af88376ed5478672afa09cd6f55743ba893157715",
-    "whatsapp-identity.test.mjs": "13c87501842f65d549908ee0b811c36af27033d7b33e456796d3aed99ab18035",
+    "whatsapp-identity.mjs": "f4a3db3a9339cf468a1aefaeb349e881263fdb9c0688cdb246656fc0f873943d",
+    "whatsapp-identity.test.mjs": "b40c395c8cc8ddd8ecf1d8b85c8d0b46082e82f41dec4465ddefdceffec4c93e",
     "rate-limit.mjs": "ec4e13dbcbbd1129de45331519de0ba74510d95929b0908ec28fd45b5cc98af2",
     "rate-limit.test.mjs": "623c2240d70e1996a3ed72e398218f623ce47e9acd172c7674e9f2bbf2a56e8f"
+  },
+  "phoneFirstUpdate": {
+    "repository": "https://github.com/Tanwyhang/eventflo-games",
+    "branch": "codex/revisit-phone-first",
+    "note": "Phone-first identity; original delivery route retained. Session, encryption and confirmed-send helpers unchanged."
   }
 }

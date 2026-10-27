@@ -16,13 +16,16 @@ export function parseWhatsAppIdentity(value) {
   return null;
 }
 export function recipientJid(value) { return parseWhatsAppIdentity(value)?.jid || null; }
+/** Prefer a verified phone for identity; retain the provider's original delivery route. */
+function preferredIdentity(original, alternate) {
+  const alias = alternate && alternate.namespace !== original.namespace ? alternate : null;
+  const primary = original.namespace === 'phone' ? original : alias?.namespace === 'phone' ? alias : original;
+  const secondary = primary.jid === original.jid ? alias : original;
+  return {senderId:primary.jid,chatId:original.jid,...(secondary ? {verifiedAlias:secondary.jid} : {})};
+}
 export function inboundWhatsAppIdentity(key) {
   const original = parseWhatsAppIdentity(key?.remoteJid);
-  if (!original) return null;
-  const alternate = parseWhatsAppIdentity(key.remoteJidAlt);
-  return { senderId: original.jid, chatId: original.jid,
-    // The alternate is supplied by the authenticated provider message key only.
-    ...(alternate && alternate.namespace !== original.namespace ? { verifiedAlias: alternate.jid } : {}) };
+  return original ? preferredIdentity(original,parseWhatsAppIdentity(key.remoteJidAlt)) : null;
 }
 export function isUnsubscribe(text) { return /^(stop|unsubscribe|cancel|end|quit)[.!]?$/i.test(String(text || '').trim()); }
 
@@ -31,5 +34,5 @@ export async function verifiedInboundIdentity(key, mapping) {
   const identity = inboundWhatsAppIdentity(key);
   if (!identity || identity.verifiedAlias || !identity.senderId.endsWith('@lid') || !mapping?.getPNForLID) return identity;
   const known = parseWhatsAppIdentity(await mapping.getPNForLID(identity.senderId));
-  return known?.namespace === 'phone' ? {...identity, verifiedAlias: known.jid} : identity;
+  return known?.namespace === 'phone' ? preferredIdentity(parseWhatsAppIdentity(identity.chatId),known) : identity;
 }
