@@ -1,3 +1,7 @@
+# 7.0.0-relaywa.3 (2026-10-27)
+
+- Preferred verified phone identities while retaining original delivery routes, stable customer-key guidance and unchanged session/encryption helpers.
+
 # 7.0.0-relaywa.2 (2026-10-24)
 
 - Export ReVisit's unchanged confirmed-send, durable retry, LID identity and rate-limit helpers with their regression tests.
@@ -14,3 +18,7 @@
 # 7.0.0-rc14 (2026-07-29)
 
 
+
+## 27 October 2026
+
+- Preferred verified phone identities while retaining original LID delivery routes and existing session/encryption fixes.

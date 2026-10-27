@@ -19,3 +19,5 @@ retains its existing TypeScript declarations; helper modules use native ESM.
 
 Do not pass untrusted provider acknowledgement events to `receipt`. Persisted
 retry data includes media encryption keys and must not be logged or committed.
+
+Verified phone first: `senderId` prefers a provider-verified phone JID, with LID fallback. `chatId` always preserves the original inbound route, including LID, for stable replies. `verifiedAlias` contains the other namespace. Persist customer ownership under a stable internal key; learning a phone must not reset quotas or duplicate histories.

@@ -1,7 +1,7 @@
 {
   "name": "@workflo/relaywa-baileys",
   "type": "module",
-  "version": "7.0.0-relaywa.2",
+  "version": "7.0.0-relaywa.3",
   "description": "Workflo's pinned Baileys compatibility build for RelayWA",
   "keywords": [
     "whatsapp",
